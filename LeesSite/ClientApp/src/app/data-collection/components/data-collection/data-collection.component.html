@@ -1,1 +1,82 @@
-<p>data-collection works!</p>
+<mat-card  class="text-center">
+  <h3>Welcome! <br />Please fill out this form before entering!</h3>
+  <form (submit)="onSubmit()" [formGroup]="form">
+
+    <mat-form-field class="full" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+
+      <ng-container *ngIf="form.get('name')!.errors as errors" ngProjectAs="mat-error">
+        <mat-error *ngFor="let error of (errors | keyvalue | slice:0:1)">
+          <div *ngIf="error.key == 'required'">
+            Please enter your name!
+          </div>
+          <div *ngIf="error.key == 'minlength'">
+            Input must be longer than 3 letters!
+          </div>
+        </mat-error>
+      </ng-container>
+    </mat-form-field>
+
+    <mat-form-field class="full" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+
+      <ng-container *ngIf="form.get('email')!.errors as errors" ngProjectAs="mat-error">
+        <mat-error *ngFor="let error of (errors | keyvalue | slice:0:1)">
+          <div *ngIf="error.key == 'email'">
+            Please enter a valid email!
+          </div>
+        </mat-error>
+      </ng-container>
+    </mat-form-field>
+
+    <mat-form-field class="full" appearance="outline">
+      <mat-label>Reason for visiting</mat-label>
+      <mat-select formControlName="reason">
+        <mat-option *ngFor="let reason of reasons" [value]="reason.id">
+          {{reason.reason1}}
+        </mat-option>
+      </mat-select>
+
+      <ng-container *ngIf="form.get('reason')!.errors as errors" ngProjectAs="mat-error">
+        <mat-error *ngFor="let error of (errors | keyvalue | slice:0:1)">
+          <div *ngIf="error.key == 'required'">
+            Please choose your reason for visiting!
+          </div>
+        </mat-error>
+      </ng-container>
+    </mat-form-field>
+
+    <div>
+
+      <label>Upload a photo of yourself!</label><br />
+      <input #imgUpload type="file" (change)="onFileSelected($event)" />
+
+      <mat-form-field class="half" appearance="outline">
+        <mat-label>Image Name</mat-label>
+        <input matInput formControlName="imageName" />
+
+        <ng-container *ngIf="form.get('reason')!.errors as errors" ngProjectAs="mat-error">
+          <mat-error *ngFor="let error of (errors | keyvalue | slice:0:1)">
+            <div *ngIf="error.key == 'required'">
+              Please enter an image name!
+            </div>
+            <div *ngIf="error.key == 'minlength'">
+              Input must be longer than 3 letters!
+            </div>
+          </mat-error>
+        </ng-container>
+
+      </mat-form-field>
+      <ng-container *ngIf="msg" ngProjectAs="mat-error">
+        <mat-error>
+          {{msg}}
+        </mat-error>
+      </ng-container>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+  </form>
+</mat-card>

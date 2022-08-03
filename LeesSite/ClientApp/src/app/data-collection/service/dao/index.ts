@@ -1,1 +1,1 @@
-export * from './data-service.dao.service';
+export * from './data.dao.service';

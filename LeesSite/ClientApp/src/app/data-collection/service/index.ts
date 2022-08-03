@@ -1,1 +1,1 @@
-export * from './data-service.service';
+export * from './data.service';

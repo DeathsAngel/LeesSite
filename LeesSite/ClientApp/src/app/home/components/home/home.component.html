@@ -1,14 +1,14 @@
-<mat-card class="mat-elevation-z3">
-  <div fxLayoutAlign="start start">
+<mat-card class="mat-elevation-z3" style="display: flex;">
+  <div>
     <mat-card-title>Lee McCready</mat-card-title>
     <br />
     <div style="text-align: right; float: right;">
       <p>This is me! &#8595;</p>
     </div>
     <h2>About me</h2>
-    <div>
-      <img src="" width="30%" style="float: right;"/>
-      <br />
+    <div layout>
+      <img src="{{picture!.image}}" style='width: 25%; float: right;' alt="{{picture!.imageName}}" title="{{picture!.imageName}}"/>
+      <br style="float:right;"/>
       <p>
         Hello! My name is Lee McCready! I am a software developer that has just graduated from Pittsburgh Technical College with an Associate's in Science!
         This website is just to showcase my ability to program, and will include code snippits from this site. Thank you for your interest and enjoy the
@@ -17,6 +17,7 @@
     </div>
     <br />
     <h3>About the site</h3>
-    <p>This site is coded using Angular and C# with ASP.net.</p>
+    <p>This site is coded using Angular and C# with ASP.net.</p><br />
+    <p>All images are stored and loaded from my database.</p>
   </div>
 </mat-card>
